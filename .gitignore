@@ -1,0 +1,17 @@
+# Node
+crud-angular/node_modules
+crud-angular/dist
+
+# Java
+crud-spring/target
+
+# IDEs
+*.iml
+.idea/
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+# Miscellaneous
+crud-angular/.angular/cache
