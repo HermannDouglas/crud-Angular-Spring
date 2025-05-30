@@ -4,5 +4,13 @@ table {
 
 .courses__mat-card {
   max-width: 98%;
-  margin: 12px auto; 
+  margin: 12px auto;
+}
+
+.loading-spinner {
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
