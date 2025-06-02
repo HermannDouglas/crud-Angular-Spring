@@ -35,7 +35,22 @@ public class CourseController {
             course.setName("Angular com Spring");
             course.setCategory("Fullstack");
 
-            courseRepository.save(course);
+            courseRepository.save(course);            
+
+            Course course2 = new Course();
+            course2.setName("React com Spring");
+            course2.setCategory("Fullstack");
+            courseRepository.save(course2);
+
+            Course course3 = new Course();
+            course3.setName("Vue com Spring");
+            course3.setCategory("Fullstack");
+            courseRepository.save(course3);
+
+            Course course4 = new Course();
+            course4.setName("Java");
+            course4.setCategory("Backend");
+            courseRepository.save(course4);
         };
     }
 }
