@@ -34,7 +34,7 @@ public class CourseController {
 
             Course course = new Course();
             course.setName("Angular com Spring");
-            course.setCategory("Frontend");
+            course.setCategory("Fullstack");
 
             courseRepository.save(course);
         };
