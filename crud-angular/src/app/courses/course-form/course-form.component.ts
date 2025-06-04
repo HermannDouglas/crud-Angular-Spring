@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { CoursesService } from '../services/courses.service';
-import { error } from 'console';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -12,22 +11,21 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './course-form.component.scss',
 })
 export class CourseFormComponent implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     private service: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: [null],
-      category: [null],
+      name: [''],
+      category: [''],
     });
   }
-
-  ngOnInit(): void {}
-
   onSubmit() {
     this.service.save(this.form.value).subscribe(
       (result) => this.onSuccess(),
