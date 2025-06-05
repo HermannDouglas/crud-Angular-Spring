@@ -1,10 +1,13 @@
-table {
-  width: 100%;
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
 }
 
-.courses__mat-card {
-  max-width: 98%;
-  margin: 12px auto;
+.column-flex {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
 }
 
 .loading-spinner {
