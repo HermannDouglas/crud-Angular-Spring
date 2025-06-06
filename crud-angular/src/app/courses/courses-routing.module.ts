@@ -9,12 +9,12 @@ const routes: Routes = [
   {
     path: 'new',
     component: CourseFormComponent,
-    resolve: { courses: CourseResolver },
+    resolve: { course: CourseResolver },
   },
   {
     path: 'edit/:id',
     component: CourseFormComponent,
-    resolve: { courses: CourseResolver },
+    resolve: { course: CourseResolver },
   },
 ];
 

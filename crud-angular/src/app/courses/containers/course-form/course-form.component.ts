@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { CoursesService } from '../../services/courses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from '../../model/course';
 
 @Component({
   selector: 'app-course-form',
@@ -17,13 +19,22 @@ export class CourseFormComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private service: CoursesService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    const course: Course = this.route.snapshot.data['course'];
+    // O console.log reflete o valor de 'course' recebido da rota.
+    // Se 'course' é undefined aqui, o problema está na configuração da rota/resolver.
+    console.log("Curso recebido da rota: ", course);
+
     this.form = this.formBuilder.group({
-      name: [''],
-      category: [''],
+      // Inicializa o formulário com os dados do curso, se existirem,
+      // ou com valores vazios/padrão caso contrário (ex: criando um novo curso).
+      _id: [course ? course._id : ''],
+      name: [course ? course.name : ''],
+      category: [course ? course.category : ''],
     });
   }
   onSubmit() {
