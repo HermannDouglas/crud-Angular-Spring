@@ -25,18 +25,14 @@ export class CourseFormComponent implements OnInit {
 
   ngOnInit(): void {
     const course: Course = this.route.snapshot.data['course'];
-    // O console.log reflete o valor de 'course' recebido da rota.
-    // Se 'course' é undefined aqui, o problema está na configuração da rota/resolver.
-    console.log("Curso recebido da rota: ", course);
 
     this.form = this.formBuilder.group({
-      // Inicializa o formulário com os dados do curso, se existirem,
-      // ou com valores vazios/padrão caso contrário (ex: criando um novo curso).
       _id: [course ? course._id : ''],
       name: [course ? course.name : ''],
       category: [course ? course.category : ''],
     });
   }
+
   onSubmit() {
     this.service.save(this.form.value).subscribe(
       (result) => this.onSuccess(),
