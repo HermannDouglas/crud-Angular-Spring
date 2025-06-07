@@ -3,11 +3,14 @@
   <mat-card-content>
     <mat-toolbar color="primary">Detalhes do Curso</mat-toolbar>
     <form [formGroup]="form" class="min-width">
-      <mat-form-field class="full-with">
-        <input matInput placeholder="Nome" formControlName="name">
+      <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name" #name>
+        <mat-hint align="end">{{ name.value.length }} / 150</mat-hint>
+        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage("name") }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-with">
+      <mat-form-field class="full-width">
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="category">
           <mat-option value="null"> </mat-option>
@@ -15,11 +18,13 @@
           <mat-option value="Backend">Backend</mat-option>
           <mat-option value="Fullstack">Fullstack</mat-option>
           <mat-option value="Mobile">Mobile</mat-option>
+          <mat-option value="Desktop">Desktop</mat-option>
           <mat-option value="Database">Database</mat-option>
           <mat-option value="Machine Learning">Machine Learning</mat-option>
           <mat-option value="Cloud">Cloud</mat-option>
           <mat-option value="Outros">Outros</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.get('category')?.invalid">{{ getErrorMessage("category") }}</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
