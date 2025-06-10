@@ -1,4 +1,4 @@
-package com.hermann.models;
+package com.hermann.model;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
