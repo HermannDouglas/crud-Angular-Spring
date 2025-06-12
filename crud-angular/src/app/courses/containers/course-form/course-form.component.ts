@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { CoursesService } from '../../services/courses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from '../../model/course';
+import { CoursesService } from '../../services/courses.service';
+import { Lesson } from '../../model/lesson';
 
 @Component({
   selector: 'app-course-form',
@@ -27,18 +28,42 @@ export class CourseFormComponent implements OnInit {
     const course: Course = this.route.snapshot.data['course'];
 
     this.form = this.formBuilder.group({
-      _id: [course ? course._id : ''],
+      _id: [course._id],
       name: [
-        course ? course.name : '',
+        course.name,
         [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(150),
         ],
       ],
-      category: [course ? course.category : '', [Validators.required]],
+      category: [course.category, [Validators.required]],
+      lessons: this.formBuilder.array(this.retrieveLessons(course)),
     });
-    console.log(course);
+    console.log(this.form);
+    console.log(this.form.value);
+  }
+
+  private retrieveLessons(course: Course) {
+    const lessons = [];
+
+    if (course?.lessons && course.lessons.length > 0) {
+      course.lessons.forEach((lesson) => {
+        lessons.push(this.createLesson(lesson));
+      });
+    } else {
+      lessons.push(this.createLesson());
+    }
+
+    return lessons;
+  }
+
+  private createLesson(lesson: Lesson = { id: '', name: '', youtubeUrl: '' }) {
+    return this.formBuilder.group({
+      id: [lesson.id],
+      name: [lesson.name],
+      youtubeUrl: [lesson.youtubeUrl],
+    });
   }
 
   onSubmit() {
