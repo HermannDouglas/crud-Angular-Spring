@@ -38,6 +38,7 @@ export class CourseFormComponent implements OnInit {
       ],
       category: [course ? course.category : '', [Validators.required]],
     });
+    console.log(course);
   }
 
   onSubmit() {
